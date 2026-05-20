@@ -17,10 +17,10 @@ export default function About() {
             <div className="aspect-[4/5] relative overflow-hidden rounded-sm border border-gold/20">
               <div className="absolute inset-0 bg-emerald-900/10 z-10" />
               <Image
-                src="https://images.unsplash.com/photo-1526218626217-dc65a29bb444?q=80&w=800&auto=format&fit=crop"
+                src="/images/artist-1.jpg"
                 alt="Saoty Arewa"
                 fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="object-cover transition-transform duration-700 group-hover:scale-110 object-top"
               />
             </div>
             {/* Decorative Gold Frame */}
@@ -50,8 +50,8 @@ export default function About() {
                 and social issues like broken homes and parental neglect.
               </p>
               <p className="italic border-l-4 border-gold pl-6 py-2 my-8 text-foreground/90">
-                "My music is not just entertainment; it is a vehicle for education, moral instruction,
-                and spiritual growth."
+                &ldquo;My music is not just entertainment; it is a vehicle for education, moral instruction,
+                and spiritual growth.&rdquo;
               </p>
               <p>
                 With over 30 studio albums, Saoty Arewa has earned widespread recognition, including an honorary

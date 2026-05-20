@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { collaborators } from "@/data/albums";
 
 export default function Collaborations() {
@@ -28,10 +29,12 @@ export default function Collaborations() {
             >
               <div className="aspect-square relative overflow-hidden rounded-full border-2 border-gold/10 group-hover:border-gold/50 transition-all duration-500 mb-4 mx-auto max-w-[160px]">
                 <div className="absolute inset-0 bg-emerald-900/20 z-10 group-hover:opacity-0 transition-opacity" />
-                <img
-                  src={`https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=300&auto=format&fit=crop`}
+                <Image
+                  src={artist.image}
                   alt={artist.name}
-                  className="object-cover w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                  fill
+                  sizes="160px"
+                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
                 />
               </div>
               <h4 className="text-white font-serif text-lg group-hover:text-gold transition-colors">{artist.name}</h4>

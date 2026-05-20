@@ -78,7 +78,7 @@ export default function Legacy() {
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
           <h3 className="text-2xl md:text-3xl font-serif text-white mb-6 italic">
-            "A pivotal figure in Nigerian Islamic music, bridging the gap between faith and contemporary expression."
+            &ldquo;A pivotal figure in Nigerian Islamic music, bridging the gap between faith and contemporary expression.&rdquo;
           </h3>
           <p className="text-gold uppercase tracking-widest text-sm">— Cultural Archive Review</p>
         </motion.div>

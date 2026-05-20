@@ -41,7 +41,6 @@ export default function Footer() {
                 <Music2 size={20} />
               </a>
             </div>
-            <p className="text-sm text-foreground/40">Booking: booking@saotyarewa.com</p>
           </div>
         </div>
 

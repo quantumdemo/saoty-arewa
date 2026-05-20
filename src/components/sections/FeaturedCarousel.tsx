@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { singleAlbums } from "@/data/albums";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function FeaturedCarousel() {
   const featured = singleAlbums.filter(a => !a.notAvailable && a.year >= 2023).slice(0, 5);
@@ -13,23 +13,25 @@ export default function FeaturedCarousel() {
   const prev = () => setIndex((prev) => (prev - 1 + featured.length) % featured.length);
 
   useEffect(() => {
-    const timer = setInterval(next, 5000);
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % featured.length);
+    }, 5000);
     return () => clearInterval(timer);
-  }, [index]);
+  }, [featured.length]);
 
   return (
     <section className="py-24 bg-emerald-900/10 border-y border-gold/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between mb-12">
           <div>
-            <h3 className="text-gold uppercase tracking-widest text-xs mb-2">Editor's Choice</h3>
+            <h3 className="text-gold uppercase tracking-widest text-xs mb-2">Editor&apos;s Choice</h3>
             <h2 className="text-3xl md:text-5xl font-serif text-white">Featured <span className="text-gold italic">Releases</span></h2>
           </div>
           <div className="flex gap-4">
-            <button onClick={prev} className="p-3 border border-gold/20 text-gold hover:bg-gold/10 transition-colors">
+            <button onClick={prev} className="p-3 border border-gold/20 text-gold hover:bg-gold/10 transition-colors" aria-label="Previous album">
               <ChevronLeft size={24} />
             </button>
-            <button onClick={next} className="p-3 border border-gold/20 text-gold hover:bg-gold/10 transition-colors">
+            <button onClick={next} className="p-3 border border-gold/20 text-gold hover:bg-gold/10 transition-colors" aria-label="Next album">
               <ChevronRight size={24} />
             </button>
           </div>
@@ -63,7 +65,7 @@ export default function FeaturedCarousel() {
                  <div className="absolute inset-0 bg-gold/10 mix-blend-overlay" />
                  <div
                     className="w-full h-full bg-center bg-cover transform group-hover:scale-105 transition-transform duration-1000"
-                    style={{ backgroundImage: `url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop')` }}
+                    style={{ backgroundImage: `url('/images/artist-2.jpg')` }}
                  />
                  <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60" />
                  <div className="absolute bottom-8 left-8">
@@ -81,10 +83,11 @@ export default function FeaturedCarousel() {
 
         {/* Indicators */}
         <div className="flex justify-center gap-3 mt-12">
-          {featured.map((_, i) => (
+          {featured.map((album, i) => (
             <button
                 key={i}
                 onClick={() => setIndex(i)}
+                aria-label={`Go to ${album.title}`}
                 className={`h-1 transition-all duration-500 ${i === index ? "w-12 bg-gold" : "w-4 bg-gold/20 hover:bg-gold/40"}`}
             />
           ))}

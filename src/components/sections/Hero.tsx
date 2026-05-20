@@ -10,7 +10,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black z-0">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-40 grayscale"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1514525253361-bee243870d2c?q=80&w=1920&auto=format&fit=crop")' }}
+          style={{ backgroundImage: 'url("/images/hero.jpg")' }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
       </div>
@@ -28,7 +28,7 @@ export default function Hero() {
             Alhaji <span className="text-gold-gradient block md:inline">Saoty Arewa</span>
           </h1>
           <p className="max-w-2xl mx-auto text-foreground/80 text-lg md:text-xl leading-relaxed mb-12 font-sans italic">
-            "Combining Islamic teachings with Yoruba cultural wisdom to create timeless music for generations."
+            &ldquo;Combining Islamic teachings with Yoruba cultural wisdom to create timeless music for generations.&rdquo;
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

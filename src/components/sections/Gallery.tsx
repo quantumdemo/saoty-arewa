@@ -2,15 +2,16 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import { X, Maximize2 } from "lucide-react";
 
 const images = [
-  { id: 1, src: "https://images.unsplash.com/photo-1523315570223-937cc357c3e5?q=80&w=800&auto=format&fit=crop", title: "Live Performance" },
-  { id: 2, src: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=800&auto=format&fit=crop", title: "Studio Session" },
-  { id: 3, src: "https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=800&auto=format&fit=crop", title: "Cultural Event" },
-  { id: 4, src: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800&auto=format&fit=crop", title: "Stage Lighting" },
-  { id: 5, src: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800&auto=format&fit=crop", title: "Audience Moment" },
-  { id: 6, src: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop", title: "Musical Archive" },
+  { id: 1, src: "/images/artist-1.jpg", title: "Portrait Session" },
+  { id: 2, src: "/images/artist-2.jpg", title: "Studio Session" },
+  { id: 3, src: "/images/artist-3.jpg", title: "Live Performance" },
+  { id: 4, src: "/images/artist-4.jpg", title: "Cultural Event" },
+  { id: 5, src: "/images/artist-5.jpg", title: "Spiritual Gathering" },
+  { id: 6, src: "/images/artist-6.jpg", title: "Legacy Archive" },
 ];
 
 export default function Gallery() {
@@ -34,12 +35,16 @@ export default function Gallery() {
               className="relative group cursor-pointer overflow-hidden rounded-sm border border-gold/10"
               onClick={() => setSelectedImage(img.src)}
             >
-              <img
-                src={img.src}
-                alt={img.title}
-                className="w-full grayscale hover:grayscale-0 transition-all duration-700 hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <div className="relative aspect-[3/4]">
+                <Image
+                  src={img.src}
+                  alt={img.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                />
+              </div>
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
                 <div className="text-center">
                   <Maximize2 className="text-gold mx-auto mb-2" size={24} />
                   <p className="text-white font-serif tracking-widest">{img.title}</p>
@@ -60,15 +65,22 @@ export default function Gallery() {
             onClick={() => setSelectedImage(null)}
             className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-12"
           >
-            <button className="absolute top-8 right-8 text-white/50 hover:text-gold transition-colors">
+            <button className="absolute top-8 right-8 text-white/50 hover:text-gold transition-colors z-10">
               <X size={40} />
             </button>
-            <motion.img
+            <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
-              src={selectedImage}
-              className="max-w-full max-h-full object-contain shadow-2xl border border-gold/20"
-            />
+              className="relative w-full h-full max-w-5xl max-h-[80vh]"
+            >
+              <Image
+                src={selectedImage}
+                alt="Selected portrait"
+                fill
+                className="object-contain shadow-2xl border border-gold/20"
+                priority
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
