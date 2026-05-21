@@ -89,38 +89,66 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-gold p-2"
+          className="md:hidden text-gold p-2 flex flex-col justify-center items-center gap-1.5 w-10 h-10 z-[10000] relative"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          <motion.span
+            animate={{
+              rotate: isOpen ? 45 : 0,
+              y: isOpen ? 8 : 0
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="w-6 h-0.5 bg-gold block rounded-full"
+          />
+          <motion.span
+            animate={{
+              opacity: isOpen ? 0 : 1
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="w-6 h-0.5 bg-gold block rounded-full"
+          />
+          <motion.span
+            animate={{
+              rotate: isOpen ? -45 : 0,
+              y: isOpen ? -8 : 0
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="w-6 h-0.5 bg-gold block rounded-full"
+          />
         </button>
       </div>
 
-      {/* Mobile Nav Overlay */}
+      {/* Mobile Nav Sidebar Drawer */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[9999] md:hidden flex flex-col"
-          >
-            <div className="flex justify-between items-center px-6 py-4 border-b border-gold/10">
-              <span className="text-2xl font-serif font-bold text-gold tracking-wider">
-                SAOTY AREWA
-              </span>
-              <button
-                className="text-gold p-2 hover:bg-gold/10 rounded-full transition-colors"
-                onClick={() => setIsOpen(false)}
-                aria-label="Close menu"
-              >
-                <X size={32} />
-              </button>
-            </div>
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] md:hidden"
+            />
 
-            <div className="flex-grow flex flex-col items-center justify-start gap-4 overflow-y-auto pt-10 pb-10 px-6">
+            {/* Sidebar Drawer */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed top-0 right-0 bottom-0 w-[80%] max-w-[320px] bg-[#050505] border-l border-gold/10 z-[9999] md:hidden flex flex-col shadow-2xl"
+            >
+              <div className="flex justify-between items-center px-6 py-4 border-b border-gold/10">
+                <span className="text-xl font-serif font-bold text-gold tracking-wider">
+                  SAOTY AREWA
+                </span>
+                <div className="w-10 h-10" /> {/* Spacer to balance header */}
+              </div>
+
+              <div className="flex-grow flex flex-col items-stretch justify-start gap-3 overflow-y-auto pt-8 pb-10 px-4">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.name}
@@ -133,7 +161,7 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      "text-xl font-serif py-4 px-6 block transition-all rounded-sm border border-gold/5 bg-white/5 shadow-[0_4px_10px_rgba(0,0,0,0.3)]",
+                      "text-lg font-serif py-3 px-5 block transition-all rounded-sm border border-gold/5 bg-white/5 shadow-[0_4px_10px_rgba(0,0,0,0.3)]",
                       activeSection === link.href.substring(1) ? "text-gold border-gold/30 bg-gold/5" : "text-white/80 hover:text-gold hover:bg-white/10"
                     )}
                   >
@@ -165,6 +193,7 @@ export default function Navbar() {
               © {new Date().getFullYear()} Saoty Arewa
             </div>
           </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
