@@ -101,26 +101,13 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-[#050505] z-[999] md:hidden flex flex-col"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/90 backdrop-blur-md z-[400] md:hidden flex flex-col"
           >
-            <div className="flex justify-between items-center p-6 border-b border-gold/10">
-              <span className="text-xl font-serif font-bold text-gold tracking-wider">
-                SAOTY AREWA
-              </span>
-              <button
-                className="text-gold p-2 hover:bg-gold/10 rounded-full transition-colors"
-                onClick={() => setIsOpen(false)}
-                aria-label="Close menu"
-              >
-                <X size={32} />
-              </button>
-            </div>
-
-            <div className="flex-grow flex flex-col items-center justify-start gap-6 overflow-y-auto pt-20 pb-10 px-6">
+            <div className="flex-grow flex flex-col items-center justify-start gap-6 overflow-y-auto pt-32 pb-10 px-6">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.name}

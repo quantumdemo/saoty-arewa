@@ -90,6 +90,10 @@ export const collaborators = [
   { name: "Shefiu Alao", image: "/collabs/shefiu.jpg" },
   { name: "Taiye Currency", image: "/collabs/currency.jpg" },
   { name: "Rukayat Gawat", image: "/collabs/gawat.jpg" },
+  { name: "Aminat Babalola", image: "/collabs/aminat.jpg" },
+  { name: "Ameenat Ajao", image: "/collabs/ameerat.jpg" },
+  { name: "Kabir Alayande", image: "/collabs/kabir.jpg" },
+  { name: "Sofiat Iyankaola", image: "/collabs/sofiat.jpg" },
 ];
 
 export const socialLinks = {
