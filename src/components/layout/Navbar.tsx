@@ -104,11 +104,11 @@ export default function Navbar() {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-[#050505] z-[999] md:hidden flex flex-col"
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[999] md:hidden flex flex-col"
           >
-            <div className="flex justify-between items-center p-6 border-b border-gold/10">
-              <span className="text-xl font-serif font-bold text-gold tracking-wider">
+            <div className="flex justify-between items-center px-6 py-4 border-b border-gold/10">
+              <span className="text-2xl font-serif font-bold text-gold tracking-wider">
                 SAOTY AREWA
               </span>
               <button
