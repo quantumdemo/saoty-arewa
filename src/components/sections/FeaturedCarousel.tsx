@@ -6,7 +6,7 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function FeaturedCarousel() {
-  const featured = singleAlbums.filter(a => !a.notAvailable && a.year >= 2023).slice(0, 5);
+  const featured = singleAlbums.filter(a => !a.notAvailable && a.year && a.year >= 2023).slice(0, 5);
   const [index, setIndex] = useState(0);
 
   const next = () => setIndex((prev) => (prev + 1) % featured.length);

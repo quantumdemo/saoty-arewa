@@ -1,7 +1,7 @@
 export interface Album {
   id: string;
   title: string;
-  year: number;
+  year?: number;
   iframes: string[];
   isDuet?: boolean;
   artists?: string;
@@ -67,20 +67,20 @@ export const singleAlbums: Album[] = [
 ];
 
 export const duetAlbums: Album[] = [
-  { id: "d1", title: "My Parent", year: 2018, isDuet: true, artists: "Alh. Saoty Arewa ft. Alh. Alabi Pasuma", iframes: [
+  { id: "d1", title: "My Parent", isDuet: true, artists: "Alh. Saoty Arewa ft. Alh. Alabi Pasuma", iframes: [
     '<iframe src="https://audiomack.com//embed/naheemak/song/my-parent" scrolling="no" width="100%" height="252" frameborder="0" title="My Parent"></iframe>',
     '<iframe src="https://audiomack.com//embed/naheemak/song/my-parent-1" scrolling="no" width="100%" height="252" frameborder="0" title="MY PARENT 1"></iframe>'
   ] },
-  { id: "d2", title: "Iwa Ẹda", year: 2018, isDuet: true, artists: "Alh. Saoty Arewa ft. Alh. Alao Malaika", iframes: ['<iframe src="https://audiomack.com//embed/desimusic/album/iwa-eda-2" scrolling="no" width="100%" height="400" frameborder="0" title="Iwa Eda"></iframe>'] },
-  { id: "d3", title: "Divorce", year: 2018, isDuet: true, artists: "Alh. Saoty Arewa ft. Alh. Shefiu Alao", iframes: ['<iframe src="https://audiomack.com//embed/desimusic/album/divorce" scrolling="no" width="100%" height="400" frameborder="0" title="Divorce"></iframe>'] },
-  { id: "d4", title: "Jẹnrayewa", year: 2019, isDuet: true, artists: "Alh. Saoty Arẹwa ft. Alh. Saheed Osupa", iframes: [] },
-  { id: "d5", title: "Ọba mẹwa", year: 2019, isDuet: true, artists: "Alh. Saoty Arewa ft. Alh. T'aiye Currency", iframes: [] },
-  { id: "d6", title: "Ibawi Ọjọkan", year: 2020, isDuet: true, artists: "Alh. Ameerat Ajao ft. Alh. Saoty Arewa", iframes: [] },
-  { id: "d7", title: "Towo Tọmọ", year: 2020, isDuet: true, artists: "Alh. Kafayat Ẹni’ayenfẹ ft. Alh. Saoty Arewa", iframes: [] },
-  { id: "d8", title: "Alaya Meji", year: 2021, isDuet: true, artists: "Alh. Ameerat Ajao ft. Alh. Aminat Babalola Ọmọtayebi ft. Alh. Saoty Arewa", iframes: [] },
-  { id: "d9", title: "Ọkọ nimofẹ", year: 2021, isDuet: true, artists: "Alh. Sofiat Iyankaola ft. Alh. Kabir Alayande Ere Asalatu ft. Alh. Saoty Arewa", iframes: [] },
-  { id: "d10", title: "Iyawo Ọbun", year: 2022, isDuet: true, artists: "Alh. Rukayat Gawat ft. Alh. Saoty Arewa", iframes: [] },
-  { id: "d11", title: "Ọlọbẹ Lolọkọ", year: 2022, isDuet: true, artists: "Alh. Aminat Babalola Ọmọtayebi ft. Alh. Saoty Arewa", iframes: [] },
+  { id: "d2", title: "Iwa Ẹda", isDuet: true, artists: "Alh. Saoty Arewa ft. Alh. Alao Malaika", iframes: ['<iframe src="https://audiomack.com//embed/desimusic/album/iwa-eda-2" scrolling="no" width="100%" height="400" frameborder="0" title="Iwa Eda"></iframe>'] },
+  { id: "d3", title: "Divorce", isDuet: true, artists: "Alh. Saoty Arewa ft. Alh. Shefiu Alao", iframes: ['<iframe src="https://audiomack.com//embed/desimusic/album/divorce" scrolling="no" width="100%" height="400" frameborder="0" title="Divorce"></iframe>'] },
+  { id: "d4", title: "Jẹnrayewa", isDuet: true, artists: "Alh. Saoty Arẹwa ft. Alh. Saheed Osupa", iframes: [] },
+  { id: "d5", title: "Ọba mẹwa", isDuet: true, artists: "Alh. Saoty Arewa ft. Alh. T'aiye Currency", iframes: [] },
+  { id: "d6", title: "Ibawi Ọjọkan", isDuet: true, artists: "Alh. Ameerat Ajao ft. Alh. Saoty Arewa", iframes: [] },
+  { id: "d7", title: "Towo Tọmọ", isDuet: true, artists: "Alh. Kafayat Ẹni’ayenfẹ ft. Alh. Saoty Arewa", iframes: [] },
+  { id: "d8", title: "Alaya Meji", isDuet: true, artists: "Alh. Ameerat Ajao ft. Alh. Aminat Babalola Ọmọtayebi ft. Alh. Saoty Arewa", iframes: [] },
+  { id: "d9", title: "Ọkọ nimofẹ", isDuet: true, artists: "Alh. Sofiat Iyankaola ft. Alh. Kabir Alayande Ere Asalatu ft. Alh. Saoty Arewa", iframes: [] },
+  { id: "d10", title: "Iyawo Ọbun", isDuet: true, artists: "Alh. Rukayat Gawat ft. Alh. Saoty Arewa", iframes: [] },
+  { id: "d11", title: "Ọlọbẹ Lolọkọ", isDuet: true, artists: "Alh. Aminat Babalola Ọmọtayebi ft. Alh. Saoty Arewa", iframes: [] },
 ];
 
 export const collaborators = [

@@ -20,7 +20,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
     >
       <div className="p-6 border-b border-gold/5 bg-white/5">
         <div className="flex justify-between items-start mb-2">
-          <span className="text-gold font-mono text-xs tracking-tighter">{album.year}</span>
+          {album.year && <span className="text-gold font-mono text-xs tracking-tighter">{album.year}</span>}
           {album.isDuet && (
             <span className="px-2 py-0.5 bg-emerald-900/40 text-emerald-400 text-[10px] uppercase tracking-widest rounded-full">
               Duet

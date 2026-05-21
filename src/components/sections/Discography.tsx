@@ -16,16 +16,20 @@ export default function Discography() {
   }, [activeTab]);
 
   const years = useMemo(() => {
-    const y = Array.from(new Set(allAlbums.map(a => a.year.toString()))).sort((a, b) => b.localeCompare(a));
+    const yearsWithValues = allAlbums
+      .map(a => a.year)
+      .filter((y): y is number => y !== undefined);
+
+    const y = Array.from(new Set(yearsWithValues.map(String))).sort((a, b) => b.localeCompare(a));
     return ["All", ...y];
   }, [allAlbums]);
 
   const filteredAlbums = useMemo(() => {
     return allAlbums.filter(album => {
       const matchesSearch = album.title.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesYear = selectedYear === "All" || album.year.toString() === selectedYear;
+      const matchesYear = selectedYear === "All" || album.year?.toString() === selectedYear;
       return matchesSearch && matchesYear;
-    }).sort((a, b) => b.year - a.year);
+    }).sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
   }, [allAlbums, searchTerm, selectedYear]);
 
   return (
@@ -66,18 +70,20 @@ export default function Discography() {
             />
           </div>
 
-          <div className="relative">
-            <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/30" size={18} />
-            <select
-              value={selectedYear}
-              onChange={(e) => setSelectedYear(e.target.value)}
-              className="w-full bg-white/5 border border-gold/10 rounded-sm py-3 pl-12 pr-4 text-white focus:outline-none focus:border-gold/50 appearance-none transition-colors"
-            >
-              {years.map(year => (
-                <option key={year} value={year} className="bg-background text-white">{year}</option>
-              ))}
-            </select>
-          </div>
+          {years.length > 1 && (
+            <div className="relative">
+              <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/30" size={18} />
+              <select
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(e.target.value)}
+                className="w-full bg-white/5 border border-gold/10 rounded-sm py-3 pl-12 pr-4 text-white focus:outline-none focus:border-gold/50 appearance-none transition-colors"
+              >
+                {years.map(year => (
+                  <option key={year} value={year} className="bg-background text-white">{year}</option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
 
         <motion.div

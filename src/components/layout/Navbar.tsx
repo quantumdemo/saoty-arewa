@@ -91,6 +91,7 @@ export default function Navbar() {
         <button
           className="md:hidden text-gold p-2"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -120,7 +121,7 @@ export default function Navbar() {
             </div>
 
             <div className="flex-grow flex flex-col items-center justify-center gap-6 overflow-y-auto py-10 px-6">
-              {navLinks.map((link, index) => (
+              {navLinks.filter(link => ["Legacy", "Collaborations", "Gallery", "Contact"].includes(link.name)).map((link, index) => (
                 <motion.div
                   key={link.name}
                   initial={{ opacity: 0, x: 20 }}
@@ -158,7 +159,7 @@ export default function Navbar() {
             </div>
 
             <div className="p-8 text-center text-white/20 text-xs tracking-[0.2em] uppercase">
-              © 2026 Saoty Arewa
+              © {new Date().getFullYear()} Saoty Arewa
             </div>
           </motion.div>
         )}
