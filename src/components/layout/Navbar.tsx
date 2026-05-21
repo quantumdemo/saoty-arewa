@@ -105,7 +105,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[999] md:hidden flex flex-col"
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[9999] md:hidden flex flex-col"
           >
             <div className="flex justify-between items-center px-6 py-4 border-b border-gold/10">
               <span className="text-2xl font-serif font-bold text-gold tracking-wider">
