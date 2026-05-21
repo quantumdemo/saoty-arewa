@@ -101,30 +101,46 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/90 backdrop-blur-md z-[400] md:hidden flex flex-col"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 bg-[#050505] z-[999] md:hidden flex flex-col"
           >
-            <div className="flex-grow flex flex-col items-center justify-start gap-6 overflow-y-auto pt-32 pb-10 px-6">
+            <div className="flex justify-between items-center p-6 border-b border-gold/10">
+              <span className="text-xl font-serif font-bold text-gold tracking-wider">
+                SAOTY AREWA
+              </span>
+              <button
+                className="text-gold p-2 hover:bg-gold/10 rounded-full transition-colors"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={32} />
+              </button>
+            </div>
+
+            <div className="flex-grow flex flex-col items-center justify-start gap-4 overflow-y-auto pt-10 pb-10 px-6">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.name}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + index * 0.05 }}
-                  className="w-full text-center"
+                  className="w-full"
                 >
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      "text-2xl font-serif py-2 block transition-colors",
-                      activeSection === link.href.substring(1) ? "text-gold" : "text-white/90 hover:text-gold"
+                      "text-xl font-serif py-4 px-6 block transition-all rounded-sm border border-gold/5 bg-white/5 shadow-[0_4px_10px_rgba(0,0,0,0.3)]",
+                      activeSection === link.href.substring(1) ? "text-gold border-gold/30 bg-gold/5" : "text-white/80 hover:text-gold hover:bg-white/10"
                     )}
                   >
-                    {link.name}
+                    <div className="flex items-center justify-between">
+                        <span>{link.name}</span>
+                        <div className={cn("w-1.5 h-1.5 rounded-full", activeSection === link.href.substring(1) ? "bg-gold shadow-[0_0_8px_#d4af37]" : "bg-white/10")} />
+                    </div>
                   </Link>
                 </motion.div>
               ))}
