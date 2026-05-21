@@ -120,8 +120,8 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="flex-grow flex flex-col items-center justify-center gap-6 overflow-y-auto py-10 px-6">
-              {navLinks.filter(link => ["Legacy", "Collaborations", "Gallery", "Contact"].includes(link.name)).map((link, index) => (
+            <div className="flex-grow flex flex-col items-center justify-start gap-6 overflow-y-auto pt-20 pb-10 px-6">
+              {navLinks.map((link, index) => (
                 <motion.div
                   key={link.name}
                   initial={{ opacity: 0, x: 20 }}
