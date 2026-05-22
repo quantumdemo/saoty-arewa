@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
@@ -12,6 +13,8 @@ import Gallery from "@/components/sections/Gallery";
 import FeaturedCarousel from "@/components/sections/FeaturedCarousel";
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -26,16 +29,27 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen">
-      <Navbar />
-      <Hero />
-      <About />
-      <FeaturedCarousel />
-      <Discography />
-      <Legacy />
-      <Collaborations />
-      <Gallery />
-      <Footer />
+    <div className="relative min-h-screen bg-background overflow-x-hidden">
+      <Navbar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
+
+      <motion.div
+        animate={{
+          scale: isMenuOpen ? 0.98 : 1,
+          filter: isMenuOpen ? "blur(4px)" : "blur(0px)",
+          borderRadius: isMenuOpen ? "2rem" : "0rem"
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="relative z-10 origin-right bg-background min-h-screen"
+      >
+        <Hero />
+        <About />
+        <FeaturedCarousel />
+        <Discography />
+        <Legacy />
+        <Collaborations />
+        <Gallery />
+        <Footer />
+      </motion.div>
 
       {/* Scroll Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 z-[60]">

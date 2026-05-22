@@ -16,8 +16,12 @@ const navLinks = [
   { name: "Contact", href: "#contact" },
 ];
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+interface NavbarProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export default function Navbar({ isOpen, setIsOpen }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
@@ -45,6 +49,14 @@ export default function Navbar() {
       document.body.style.overflow = "unset";
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [setIsOpen]);
 
   return (
     <nav
@@ -139,7 +151,13 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed top-0 right-0 bottom-0 w-[80%] max-w-[320px] bg-black/90 backdrop-blur-md border-l border-gold/10 z-[9999] md:hidden flex flex-col shadow-2xl"
+              drag="x"
+              dragConstraints={{ left: 0, right: 300 }}
+              dragElastic={0.1}
+              onDragEnd={(_, info) => {
+                if (info.offset.x > 100) setIsOpen(false);
+              }}
+              className="fixed top-0 right-0 bottom-0 w-[80%] max-w-[320px] bg-black/90 backdrop-blur-md border-l border-gold/10 z-[9999] md:hidden flex flex-col shadow-2xl rounded-l-[2rem]"
             >
               <div className="flex justify-between items-center px-6 py-4 border-b border-gold/10">
                 <span className="text-xl font-serif font-bold text-gold tracking-wider">
