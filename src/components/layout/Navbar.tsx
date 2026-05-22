@@ -139,7 +139,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed top-0 right-0 bottom-0 w-[80%] max-w-[320px] bg-[#050505] border-l border-gold/10 z-[9999] md:hidden flex flex-col shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 w-[80%] max-w-[320px] bg-black/90 backdrop-blur-md border-l border-gold/10 z-[9999] md:hidden flex flex-col shadow-2xl"
             >
               <div className="flex justify-between items-center px-6 py-4 border-b border-gold/10">
                 <span className="text-xl font-serif font-bold text-gold tracking-wider">
@@ -148,7 +148,7 @@ export default function Navbar() {
                 <div className="w-10 h-10" /> {/* Spacer to balance header */}
               </div>
 
-              <div className="flex-grow flex flex-col items-stretch justify-start gap-3 overflow-y-auto pt-8 pb-10 px-4">
+              <div className="flex-grow flex flex-col items-stretch justify-center gap-2 overflow-hidden py-6 px-4">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.name}
